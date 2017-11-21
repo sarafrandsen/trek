@@ -1,56 +1,69 @@
 $(document).ready(()=>{
 
-  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR ALL TRIPS
-  let loadTrips = function loadTrips() {
+  //// FN() FOR AJAX REQUEST/RESPONSE ///
+  //// ALL TRIPS ////////////////////////
+  let viewTripsList = function viewTripsList() {
     $.get('https://trektravel.herokuapp.com/trips',
     (response) => {
-
       response.forEach(function(trip) {
         let tripInfo =
-        `<li><h3 data-id=${trip.id}> ${trip.name} </a></h3><p> ${trip.continent}, ${trip.weeks} weeks</li>`
+        `<li><h3 data-id=${trip.id}>${trip.name} </a></h3></li>`
 
         $('#trips ul').append(tripInfo);
-        console.log('success!-for all trips');
-      });
 
+        /// console.log(); ///
+        console.log('all trips: success!');
+      });
     })
     .fail(function(response){
+      $('#fail').html('<p>Something went wrong!</p>')
+
+      /// console.log(); ///
       console.log(response);
-      $('#fail').html('<p>Request was unsuccessful-for all trips</p>')
+      console.log('all trips: error!');
     })
     .always(function(){
-      console.log('always-for all trips');
+      /// console.log(); ///
+      console.log('all trips!');
     });
   };
 
-  // FUNCTION FOR AJAX REQUEST AND RESPONSE FOR A SPECIFIC TRIP
-  let loadTrip = function loadTrip(id){
+  //// FN() FOR AJAX REQUEST/RESPONSE ///
+  //// SPECIFIC TRIP ////////////////////
+  let viewTrip = function viewTrip(id){
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
         let tripInfo =
-        `<h2>${response.name}</h2>`;
+        `<h2>${response.name}</h2><ul><li>Continent: ${response.continent}</li><li>About: ${response.about}</li></ul>`;
 
         $('#trip').html(tripInfo);
-        console.log('success!-for single trip ID');
+
+        /// console.log(); ///
+        console.log(response);
+        console.log('single trip: success!');
       })
       .fail(function(response){
+        $('#fail').html('<p>Something went wrong!</p>')
+
+        /// console.log(); ///
         console.log(response);
-        $('#fail').html('<p>Request was unsuccessful-for single trip ID.</p>')
+        console.log('single trip: error!');
       })
       .always(function(){
-        console.log('always even if we have success or failure-for single trip ID');
+        /// console.log(); ///
+        console.log('single trip!');
       });
     };
 
+    /////////////////
+    //// EVENTS /////
+    /////////////////
+    $('#load-all-trips').on('click', function(){
+      viewTripsList();
+    });
 
-    // EVENTS
     $('#trips ul').on('click', 'h3', function(){
       let tripID = $(this).attr('data-id');
-      loadTrip(tripID);
+      viewTrip(tripID);
     });
-
-    $('#load-all-trips').on('click', function(){
-      loadTrips();
-    });
-
   });
