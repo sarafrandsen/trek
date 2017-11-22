@@ -36,9 +36,11 @@ $(document).ready(()=>{
         <li><strong>Trip Duration (in weeks):</strong> ${response.weeks}</li>
         <li><strong>Trip Cost:</strong> $${response.cost}</li>
         <li><small>Category: ${response.category}</small></li>`;
+        let showReserveBtn = `<button class="button secondary hollow">Reserve Trip</button>`;
 
         $('#trip-name').html(tripName);
         $('#trip-summary').html(tripSummary);
+        $('#show-reserve-btn').html(showReserveBtn);
 
         /// console.log(); ///
         console.log('single trip: success!');
