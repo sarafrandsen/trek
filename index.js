@@ -41,7 +41,7 @@ $(document).ready(()=>{
         $('#trip-name').html(tripName);
         $('#trip-summary').html(tripSummary);
         $('#show-reserve-btn').html(showReserveBtn);
-
+        $('#reservation-form').attr('action', 'https://trektravel.herokuapp.com/trips/' + response.id + '/reservations/');
         /// console.log(); ///
         console.log('single trip: success!');
       })
@@ -61,9 +61,7 @@ $(document).ready(()=>{
 //// FN() FOR AJAX POST /////////
 //// NEW RESERVATION ////////////
     let viewForm = function viewForm(id) {
-      (response) => {
 
-      };
     };
 
 
@@ -90,16 +88,26 @@ $(document).ready(()=>{
 
 
     // make a reservation //
-    $('#submit-reservation').submit(function(e) {
+    $('form').submit(function(e) {
       e.preventDefault();
 
-      const url = $('form').attr('action', 'http://website.com/api/trip/' + response.id + '/reservation/');
-      console.log(url);
+      const url = $(this).attr('action');
       const formData = $(this).serialize();
-      console.log(formData);
 
       $.post(url, formData, (response) => {
-      $('#confirmation-msg').html('<p>Made Reservation!</p>');
+      $('#confirmation-msg').html('<p>Made Reservation: ' + $('#trip-name').html() + '!</p>');
+
+      /// console.log(); ///
+      console.log(url);
+      console.log(formData);
+      console.log('reservation: success!');
+      })
+      .fail(function(response){
+        $('#fail').html('<p>Something went wrong!</p>')
+
+        /// console.log(); ///
+        console.log(response);
+        console.log('reservation: error!');
       });
     });
 

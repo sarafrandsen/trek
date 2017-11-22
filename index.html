@@ -9,10 +9,11 @@
   <body>
 <!------------------------------------------>
 <section id="fail" class="fail-style"><!-- error message --></section>
-<section id="confirmation-msg" class="confirmation-msg-style"><!-- made new reservation/added new trip --></section>
 
 <!-- display all trips button -->
 <button id="all-trips-btn" class="button large secondary hollow expanded">View List of Trips</button>
+
+<section id="confirmation-msg" class="confirmation-msg-style"><!-- made new reservation/added new trip --></section>
 
 <!-- one trip summary -->
 <article id="trip" class="trip-style">
@@ -31,7 +32,7 @@
 
 <!-- reserve a trip -->
 <div id="reserve-trip" class="reserve-trip-style">
-  <form action="#" method="post">
+  <form action="#" method="post" id="reservation-form">
     <section>
       <label>Name: </label>
       <input type="text" id="name" name="name"></input>
