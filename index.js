@@ -54,15 +54,54 @@ $(document).ready(()=>{
       });
     };
 
+
+
+
+
+//// FN() FOR AJAX POST /////////
+//// NEW RESERVATION ////////////
+    let viewForm = function viewForm(id) {
+
+    };
+
+
+
+
+
+
     /////////////////
     //// EVENTS /////
     /////////////////
+
+    // view all trips //
     $('#all-trips-btn').on('click', function(){
       viewTripsList();
     });
 
+    // view trip summary //
     $('#trips ul').on('click', 'li', function(){
       let tripID = $(this).attr('data-id');
       viewTrip(tripID);
     });
+
+
+
+
+    // make a reservation //
+    $('#submit-reservation').on('submit', function(e) {
+      e.preventDefault();
+
+      const url = $(this).attr('action');
+      console.log(url);
+      const formData = $(this).serialize();
+      console.log(formData);
+
+      $.post(url, formData, (response) => {
+      $('#confirmation-msg').html('<p>Made Reservation!</p>');
+      });
+    });
+
+
+
+
   });

@@ -8,7 +8,8 @@
   </head>
   <body>
 <!------------------------------------------>
-<section id="fail"><!-- error message --></section>
+<section id="fail" class="fail-style"><!-- error message --></section>
+<section id="confirmation-msg" class="confirmation-msg-style"><!-- made new reservation/added new trip --></section>
 
 <!-- display all trips button -->
 <button id="all-trips-btn" class="button large secondary hollow expanded">View List of Trips</button>
@@ -25,8 +26,31 @@
   <ul><h4></h4></ul>
 </section>
 
+
+
+
 <!-- reserve a trip -->
-<
+<div id="reserve-trip" class="reserve-trip-style">
+  <form action="#" method="post">
+    <section>
+      <label>Name: </label>
+      <input type="text" id="name" name="name"></input>
+    </section>
+    <section>
+      <label>Age: </label>
+      <input type="number" id="age" name="age"></input>
+    </section>
+    <section>
+      <label>Email: </label>
+      <input type="text" id="email" name="email"></input>
+    </section>
+
+    <section class="button">
+      <button id="submit-reservation" type="submit">Make Reservation</button>
+    </section>
+  </form>
+</div>
+
 
 
 
