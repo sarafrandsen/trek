@@ -29,10 +29,16 @@ $(document).ready(()=>{
   let viewTrip = function viewTrip(id){
     $.get(`https://trektravel.herokuapp.com/trips/${id}`,
       (response) => {
-        let tripInfo =
-        `<h2>${response.name}</h2><ul><li>Continent: ${response.continent}</li><li>About: ${response.about}</li></ul>`;
+        let tripName =
+        `Trip ${response.id}: ${response.name}`;
+        let tripSummary = `<li><strong>Continent:</strong> ${response.continent}</li>
+        <li><strong>About:</strong> ${response.about}</li>
+        <li><strong>Trip Duration (in weeks):</strong> ${response.weeks}</li>
+        <li><strong>Trip Cost:</strong> $${response.cost}</li>
+        <li><small>Category: ${response.category}</small></li>`;
 
-        $('#trip-name').html(tripInfo);
+        $('#trip-name').html(tripName);
+        $('#trip-summary').html(tripSummary);
 
         /// console.log(); ///
         console.log('single trip: success!');
