@@ -61,7 +61,9 @@ $(document).ready(()=>{
 //// FN() FOR AJAX POST /////////
 //// NEW RESERVATION ////////////
     let viewForm = function viewForm(id) {
+      (response) => {
 
+      };
     };
 
 
@@ -88,10 +90,10 @@ $(document).ready(()=>{
 
 
     // make a reservation //
-    $('#submit-reservation').on('submit', function(e) {
+    $('#submit-reservation').submit(function(e) {
       e.preventDefault();
 
-      const url = $(this).attr('action');
+      const url = $('form').attr('action', 'http://website.com/api/trip/' + response.id + '/reservation/');
       console.log(url);
       const formData = $(this).serialize();
       console.log(formData);
