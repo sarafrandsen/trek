@@ -1,4 +1,4 @@
-$(document).ready(()=>{
+$(document).ready(() => {
 
   //// FN() FOR AJAX REQUEST/RESPONSE ///
   //// ALL TRIPS ////////////////////////
@@ -16,7 +16,7 @@ $(document).ready(()=>{
       });
     })
     .fail(function(response){
-      $('#fail').html('<p>Something went wrong!</p>')
+      $('#fail p').html('Something went wrong!')
 
       /// console.log(); ///
       console.log(response);
@@ -41,12 +41,17 @@ $(document).ready(()=>{
         $('#trip-name').html(tripName);
         $('#trip-summary').html(tripSummary);
         $('#show-reserve-btn').html(showReserveBtn);
+
+        $("#show-reserve-btn").click(function(){
+        $("#reservation-form").show();
+      });
+
         $('#reservation-form').attr('action', 'https://trektravel.herokuapp.com/trips/' + response.id + '/reservations/');
         /// console.log(); ///
         console.log('single trip: success!');
       })
       .fail(function(response){
-        $('#fail').html('<p>Something went wrong!</p>')
+        $('#fail p').html('Something went wrong!')
 
         /// console.log(); ///
         console.log(response);
@@ -58,8 +63,8 @@ $(document).ready(()=>{
 
 
 
-//// FN() FOR AJAX POST /////////
-//// NEW RESERVATION ////////////
+    //// FN() FOR AJAX POST /////////
+    //// NEW RESERVATION ////////////
     let viewForm = function viewForm(id) {
 
     };
@@ -84,9 +89,6 @@ $(document).ready(()=>{
       viewTrip(tripID);
     });
 
-
-
-
     // make a reservation //
     $('form').submit(function(e) {
       e.preventDefault();
@@ -95,7 +97,7 @@ $(document).ready(()=>{
       const formData = $(this).serialize();
 
       $.post(url, formData, (response) => {
-      $('#confirmation-msg').html('<p>Made Reservation: ' + $('#trip-name').html() + '!</p>');
+        $('#confirmation-msg p').html('Made Reservation: ' + $('#trip-name').html() + '!');
 
       /// console.log(); ///
       console.log(url);
@@ -103,15 +105,11 @@ $(document).ready(()=>{
       console.log('reservation: success!');
       })
       .fail(function(response){
-        $('#fail').html('<p>Something went wrong!</p>')
+        $('#fail p').html('Something went wrong!')
 
         /// console.log(); ///
         console.log(response);
         console.log('reservation: error!');
       });
     });
-
-
-
-
   });
