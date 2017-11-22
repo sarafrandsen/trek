@@ -7,7 +7,7 @@ $(document).ready(()=>{
     (response) => {
       response.forEach(function(trip) {
         let tripInfo =
-        `<li><h3 data-id=${trip.id}>${trip.name} </a></h3></li>`
+        `<li data-id=${trip.id}>${trip.name}</li>`
 
         $('#trips ul').append(tripInfo);
 
@@ -21,10 +21,6 @@ $(document).ready(()=>{
       /// console.log(); ///
       console.log(response);
       console.log('all trips: error!');
-    })
-    .always(function(){
-      /// console.log(); ///
-      console.log('all trips!');
     });
   };
 
@@ -36,10 +32,9 @@ $(document).ready(()=>{
         let tripInfo =
         `<h2>${response.name}</h2><ul><li>Continent: ${response.continent}</li><li>About: ${response.about}</li></ul>`;
 
-        $('#trip').html(tripInfo);
+        $('#trip-name').html(tripInfo);
 
         /// console.log(); ///
-        console.log(response);
         console.log('single trip: success!');
       })
       .fail(function(response){
@@ -48,21 +43,17 @@ $(document).ready(()=>{
         /// console.log(); ///
         console.log(response);
         console.log('single trip: error!');
-      })
-      .always(function(){
-        /// console.log(); ///
-        console.log('single trip!');
       });
     };
 
     /////////////////
     //// EVENTS /////
     /////////////////
-    $('#load-all-trips').on('click', function(){
+    $('#all-trips-btn').on('click', function(){
       viewTripsList();
     });
 
-    $('#trips ul').on('click', 'h3', function(){
+    $('#trips ul').on('click', 'li', function(){
       let tripID = $(this).attr('data-id');
       viewTrip(tripID);
     });

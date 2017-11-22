@@ -1,0 +1,9 @@
+/* single trip */
+.trip-style {
+  float: right;
+};
+
+/* list of trips */
+.trips-style {
+  float: left;
+};
