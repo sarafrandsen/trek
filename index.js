@@ -7,7 +7,7 @@ $(document).ready(()=>{
     (response) => {
       response.forEach(function(trip) {
         let tripInfo =
-        `<li data-id=${trip.id}>${trip.name}</li>`
+        `<li data-id=${trip.id}><a>${trip.name}</a></li>`
 
         $('#trips ul').append(tripInfo);
 
@@ -44,7 +44,12 @@ $(document).ready(()=>{
         $('#reservation-form').attr('action', 'https://trektravel.herokuapp.com/trips/' + response.id + '/reservations/');
         /// console.log(); ///
         console.log('single trip: success!');
+
+        $("#show-reserve-btn").click(function(){
+          $("#reserve-trip").slideDown();
+        });
       })
+
       .fail(function(response){
         $('#fail').html('<p>Something went wrong!</p>')
 
@@ -54,15 +59,6 @@ $(document).ready(()=>{
       });
     };
 
-
-
-
-
-//// FN() FOR AJAX POST /////////
-//// NEW RESERVATION ////////////
-    let viewForm = function viewForm(id) {
-
-    };
 
 
 
@@ -82,8 +78,9 @@ $(document).ready(()=>{
     $('#trips ul').on('click', 'li', function(){
       let tripID = $(this).attr('data-id');
       viewTrip(tripID);
+      $("html, body").animate({scrollTop: 0}, 1000);
+      $("#reserve-trip").hide();
     });
-
 
 
 
